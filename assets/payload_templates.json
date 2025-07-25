@@ -1,0 +1,76 @@
+{
+  "templates": [
+    {
+      "name": "HTTP CONNECT",
+      "description": "Standard HTTP CONNECT method for tunneling",
+      "template": "CONNECT [SNI] HTTP/1.1\nHost: [SNI]\nX-Online-Host: [SNI]\nX-Forward-Host: [SNI]\nConnection: Keep-Alive\nUser-Agent: [USER_AGENT]\nProxy-Connection: Keep-Alive\n\n"
+    },
+    {
+      "name": "HTTP GET",
+      "description": "HTTP GET method with upgrade headers",
+      "template": "GET / HTTP/1.1\nHost: [SNI]\nX-Online-Host: [SNI]\nX-Forward-Host: [SNI]\nConnection: upgrade\nUpgrade: websocket\nUser-Agent: [USER_AGENT]\n\n"
+    },
+    {
+      "name": "WebSocket Upgrade",
+      "description": "WebSocket upgrade request for tunneling",
+      "template": "GET / HTTP/1.1\nHost: [SNI]\nUpgrade: websocket\nConnection: Upgrade\nSec-WebSocket-Key: [WEBSOCKET_KEY]\nSec-WebSocket-Version: 13\nX-Online-Host: [SNI]\nUser-Agent: [USER_AGENT]\n\n"
+    },
+    {
+      "name": "HTTP Proxy",
+      "description": "HTTP proxy method for direct connection",
+      "template": "CONNECT [HOST]:[PORT] HTTP/1.1\nHost: [SNI]\nX-Online-Host: [SNI]\nProxy-Connection: Keep-Alive\nUser-Agent: [USER_AGENT]\n\n"
+    },
+    {
+      "name": "Custom Inject",
+      "description": "Custom injection method with multiple headers",
+      "template": "[METHOD] [SNI] HTTP/1.1\nHost: [SNI]\nX-Online-Host: [SNI]\nX-Forward-Host: [SNI]\nX-Real-IP: [SNI]\nConnection: Keep-Alive\nUser-Agent: [USER_AGENT]\n\n"
+    },
+    {
+      "name": "Facebook Zero",
+      "description": "Optimized for Facebook zero-rated access",
+      "template": "CONNECT [SNI] HTTP/1.1\nHost: zero.facebook.com\nX-Online-Host: [SNI]\nX-Facebook-Zero: true\nConnection: Keep-Alive\nUser-Agent: [USER_AGENT]\n\n"
+    },
+    {
+      "name": "WhatsApp CDN",
+      "description": "Optimized for WhatsApp CDN access",
+      "template": "GET / HTTP/1.1\nHost: [SNI]\nX-WhatsApp-CDN: true\nX-Online-Host: [SNI]\nConnection: upgrade\nUpgrade: websocket\nUser-Agent: [USER_AGENT]\n\n"
+    },
+    {
+      "name": "SSL Bump",
+      "description": "SSL bumping method for HTTPS tunneling",
+      "template": "CONNECT [HOST]:[PORT] HTTP/1.1\nHost: [SNI]\nX-Online-Host: [SNI]\nX-SSL-Bump: true\nProxy-Connection: Keep-Alive\nUser-Agent: [USER_AGENT]\n\n"
+    }
+  ],
+  "placeholders": {
+    "[SNI]": "SNI hostname for zero-rated access",
+    "[HOST]": "SSH server hostname",
+    "[PORT]": "SSH server port",
+    "[USER]": "SSH username",
+    "[USER_AGENT]": "Dynamic user agent from device",
+    "[WEBSOCKET_KEY]": "Generated WebSocket key",
+    "[METHOD]": "HTTP method (GET, POST, CONNECT)"
+  },
+  "zero_rated_hosts": [
+    "zero.facebook.com",
+    "free.facebook.com",
+    "graph.facebook.com",
+    "api.whatsapp.com",
+    "web.whatsapp.com",
+    "static.xx.fbcdn.net",
+    "scontent.xx.fbcdn.net",
+    "edge-chat.facebook.com",
+    "mqtt.c10r.facebook.com",
+    "b-api.facebook.com",
+    "connect.facebook.net",
+    "www.facebook.com",
+    "mobile.facebook.com",
+    "touch.facebook.com",
+    "upload.facebook.com",
+    "video.xx.fbcdn.net",
+    "external.xx.fbcdn.net",
+    "lookaside.facebook.com",
+    "api.instagram.com",
+    "www.instagram.com",
+    "cdninstagram.com"
+  ]
+}
