@@ -1,0 +1,17 @@
+{
+  "name": "agentic-workflow-system",
+  "version": "1.0.0",
+  "description": "Agentic AI Workflow Management System",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0"
+  },
+  "type": "module"
+}
