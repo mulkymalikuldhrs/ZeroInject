@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroInjector</title>
+  <style>
+    body { font-family: sans-serif; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body>
+  <nav>
+    <button onclick="showTab('dashboard')">Dashboard</button>
+    <button onclick="showTab('config-builder')">Config Builder</button>
+    <button onclick="showTab('ssh-manager')">SSH Manager</button>
+    <button onclick="showTab('sni-scanner')">SNI Scanner</button>
+    <button onclick="showTab('offline-configs')">Offline Configs</button>
+  </nav>
+
+  <div id="dashboard" class="tab-content active">
+    <h2>Dashboard</h2>
+    <p>Status: Disconnected</p>
+    <button>Connect</button>
+  </div>
+
+  <div id="config-builder" class="tab-content">
+    <h2>Config Builder</h2>
+    <textarea id="payload-template" rows="4" cols="50">CONNECT [host_port] [protocol]\nHost: [sni]\nX-Online-Host: [sni]</textarea><br>
+    <input type="text" id="config-sni" placeholder="SNI"><br>
+    <input type="text" id="config-ssh-host" placeholder="SSH Host"><br>
+    <button onclick="generateAndSaveConfig()">Save Config</button>
+    <h3>Saved Configs</h3>
+    <pre id="saved-configs"></pre>
+  </div>
+
+  <div id="ssh-manager" class="tab-content">
+    <h2>SSH Manager</h2>
+    <button onclick="fetchSsh()">Fetch SSH Accounts</button>
+    <pre id="ssh-output"></pre>
+  </div>
+
+  <div id="sni-scanner" class="tab-content">
+    <h2>SNI Scanner</h2>
+    <input type="text" id="sni-host" placeholder="Enter host to scan">
+    <button onclick="scanSni()">Scan</button>
+    <pre id="sni-output"></pre>
+  </div>
+
+  <div id="offline-configs" class="tab-content">
+    <h2>Offline Configs</h2>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => {
+        if (tab.id === tabId) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+    }
+
+    function fetchSsh() {
+      const output = document.getElementById('ssh-output');
+      output.textContent = 'Fetching...';
+      fetch('/api/ssh-accounts')
+        .then(response => response.text())
+        .then(data => {
+          output.textContent = data;
+        })
+        .catch(error => {
+          output.textContent = 'Error: ' + error;
+        });
+    }
+
+    function generateAndSaveConfig() {
+      const template = document.getElementById('payload-template').value;
+      const sni = document.getElementById('config-sni').value;
+      const sshHost = document.getElementById('config-ssh-host').value;
+
+      const config = {
+        template: template,
+        sni: sni,
+        sshHost: sshHost,
+        createdAt: new Date().toISOString()
+      };
+
+      let configs = JSON.parse(localStorage.getItem('configs') || '[]');
+      configs.push(config);
+      localStorage.setItem('configs', JSON.stringify(configs));
+      displaySavedConfigs();
+    }
+
+    function displaySavedConfigs() {
+      let configs = JSON.parse(localStorage.getItem('configs') || '[]');
+      document.getElementById('saved-configs').textContent = JSON.stringify(configs, null, 2);
+    }
+
+    // Initial display
+    displaySavedConfigs();
+
+    function scanSni() {
+      const host = document.getElementById('sni-host').value;
+      const output = document.getElementById('sni-output');
+      if (!host) {
+        output.textContent = 'Please enter a host.';
+        return;
+      }
+      output.textContent = `Scanning ${host}...`;
+      fetch(`/api/scan-sni?host=${host}`)
+        .then(response => response.json())
+        .then(data => {
+          output.textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          output.textContent = 'Error: ' + error;
+        });
+    }
+  </script>
+</body>
+</html>
