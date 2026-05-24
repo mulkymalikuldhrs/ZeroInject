@@ -1,56 +1,83 @@
-# ZeroInject
+# 💉 ZeroInject
 
-> ZeroInject - A project by Mulky Malikul Dhaher
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## Overview
+> A project by Mulky Malikul Dhaher
 
-ZeroInject is a project developed and maintained by **Mulky Malikul Dhaher**. This repository contains the source code and related resources.
+---
 
-## Getting Started
+## 🇬🇧 English
 
-### Prerequisites
+ZeroInject is a project developed and maintained by **Mulky Malikul Dhaher**. This repository contains the source code and related resources for an advanced injection framework.
 
-- Git
-- Appropriate runtime environment (see tech stack below)
-
-### Installation
+### Getting Started
 
 ```bash
 git clone https://github.com/mulkymalikuldhrs/ZeroInject.git
 cd ZeroInject
 ```
 
-### Usage
+### Tech Stack
+- **Core**: Dart/Flutter (Multi-platform)
+- **Server**: Node.js
+- **Web Interface**: HTML/CSS/JS
 
-Please refer to the documentation within the repository for usage instructions.
-
-## Tech Stack
-
-See repository files for specific technology details.
-
-## Project Structure
-
+### Project Structure
 ```
 ZeroInject/
-├── src/          # Source code
-├── docs/         # Documentation
-├── tests/        # Test files
-└── README.md     # This file
+├── android/          # Android platform code
+├── lib/              # Dart/Flutter source code
+├── web_interface/    # Web-based control interface
+├── server.js         # Node.js server
+├── pubspec.yaml      # Flutter dependencies
+└── package.json      # Node.js dependencies
 ```
 
 ---
 
-## 🤝 Contributing
+## 🇮🇩 Bahasa Indonesia
 
-Contributions are welcome! We encourage the community to help improve this project.
+ZeroInject adalah proyek yang dikembangkan dan dikelola oleh **Mulky Malikul Dhaher**. Repositori ini berisi kode sumber dan sumber daya terkait untuk framework injeksi canggih.
 
-1. **Fork** the repository
-2. Create a **feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. Open a **Pull Request**
+### Memulai
 
-Please make sure to update tests as appropriate and follow the existing code style.
+```bash
+git clone https://github.com/mulkymalikuldhrs/ZeroInject.git
+cd ZeroInject
+```
+
+### Teknologi
+- **Inti**: Dart/Flutter (Multi-platform)
+- **Server**: Node.js
+- **Antarmuka Web**: HTML/CSS/JS
+
+---
+
+## 🇨🇳 中文
+
+ZeroInject 是由 **Mulky Malikul Dhaher** 开发和维护的项目。本仓库包含高级注入框架的源代码和相关资源。
+
+### 快速开始
+
+```bash
+git clone https://github.com/mulkymalikuldhrs/ZeroInject.git
+cd ZeroInject
+```
+
+### 技术栈
+- **核心**: Dart/Flutter（多平台）
+- **服务器**: Node.js
+- **Web界面**: HTML/CSS/JS
+
+---
+
+## ⚠️ Disclaimer
+
+**For Education Purpose Only.** All content, code, and documentation provided in this repository are intended solely for educational and research purposes. Nothing in this repository constitutes financial, investment, legal, or professional advice. The authors and contributors assume no responsibility or liability for any losses, damages, or consequences arising from the use of this software or information provided herein.
+
+**Hanya untuk Tujuan Pendidikan.** Semua konten, kode, dan dokumentasi dalam repositori ini hanya ditujukan untuk tujuan pendidikan dan penelitian. Penulis dan kontributor tidak bertanggung jawab atas risiko atau kerugian apa pun yang timbul dari penggunaan perangkat lunak atau informasi yang disediakan.
+
+**仅用于教育目的。** 本仓库中的所有内容、代码和文档仅用于教育和研究目的。作者和贡献者对因使用本软件或提供的信息而造成的任何损失、损害或后果不承担任何责任。
 
 ---
 
@@ -62,21 +89,8 @@ GitHub: [https://github.com/mulkymalikuldhrs](https://github.com/mulkymalikuldhr
 
 ---
 
-## ⚠️ Disclaimer
-
-**This project is for Education Purpose only.**
-
-All content, code, and documentation provided in this repository are intended solely for educational and research purposes. Nothing in this repository constitutes financial, investment, legal, or professional advice.
-
-**Risiko apapun tidak kita tanggung.** (We are not responsible for any risks or damages.)
-
-Use at your own risk. The authors and contributors assume no liability for any losses, damages, or consequences arising from the use of this software or information provided herein.
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
-Copyright © Mulky Malikul Dhaher. All rights reserved.
-
+Copyright © 2026 Mulky Malikul Dhaher. All rights reserved.
