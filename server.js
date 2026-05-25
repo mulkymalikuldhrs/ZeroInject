@@ -112,6 +112,8 @@ app.post('/api/workflows/execute', (req, res) => {
     });
 
     // Simulate workflow execution
+    // TODO: Replace simulation with real agent/workflow execution engine
+    // Real implementation would dispatch tasks to actual AI agents or worker processes
     simulateWorkflowExecution(workflowId);
 
     res.json({ 
@@ -169,6 +171,7 @@ app.post('/api/workflows/:id/stop', (req, res) => {
 });
 
 // Simulate workflow execution
+// TODO: Replace with real workflow orchestration (e.g., LangChain, CrewAI, AutoGen)
 function simulateWorkflowExecution(workflowId) {
   const workflow = activeWorkflows.get(workflowId);
   if (!workflow) return;
