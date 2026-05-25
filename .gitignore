@@ -1,2 +1,55 @@
+# Node.js
 node_modules/
 .env
+npm-debug.log*
+
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter
+flutter_*.png
+
+# Android
+*.jks
+*.keystore
+local.properties
+.gradle/
+android/app/debug
+android/app/profile
+android/app/release
+android/.gradle/
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+
+# Build artifacts
+*.dill
+*.so
+*.dll
+*.dylib
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Coverage
+coverage/

@@ -99,38 +99,122 @@ class SSHScraper {
   }
 
   static List<SSHAccount> _parseSSHKit(String html, String source) {
-    // Similar parsing logic for SSHKit
-    return _generateDemoAccounts(source, 'sshkit.com');
+    List<SSHAccount> accounts = [];
+
+    RegExp hostPattern = RegExp(r'Host[:\s]+([a-zA-Z0-9.-]+)');
+    RegExp userPattern = RegExp(r'Username[:\s]+([a-zA-Z0-9_-]+)');
+    RegExp passPattern = RegExp(r'Password[:\s]+([a-zA-Z0-9_-]+)');
+    RegExp portPattern = RegExp(r'Port[:\s]+(\d+)');
+
+    var hostMatches = hostPattern.allMatches(html);
+    var userMatches = userPattern.allMatches(html);
+    var passMatches = passPattern.allMatches(html);
+    var portMatches = portPattern.allMatches(html);
+
+    if (hostMatches.isNotEmpty && userMatches.isNotEmpty && passMatches.isNotEmpty) {
+      for (int i = 0; i < hostMatches.length && i < userMatches.length && i < passMatches.length; i++) {
+        String host = hostMatches.elementAt(i).group(1) ?? '';
+        String username = userMatches.elementAt(i).group(1) ?? '';
+        String password = passMatches.elementAt(i).group(1) ?? '';
+        int port = 22;
+
+        if (i < portMatches.length) {
+          port = int.tryParse(portMatches.elementAt(i).group(1) ?? '22') ?? 22;
+        }
+
+        if (host.isNotEmpty && username.isNotEmpty && password.isNotEmpty) {
+          accounts.add(SSHAccount(
+            username: username,
+            host: host,
+            port: port,
+            password: password,
+            expiredDate: DateTime.now().add(const Duration(days: 7)),
+            source: source,
+          ));
+        }
+      }
+    }
+
+    return accounts;
   }
 
   static List<SSHAccount> _parseFastSSH(String html, String source) {
-    // Similar parsing logic for FastSSH
-    return _generateDemoAccounts(source, 'fastssh.com');
+    List<SSHAccount> accounts = [];
+
+    RegExp hostPattern = RegExp(r'Host[:\s]+([a-zA-Z0-9.-]+)');
+    RegExp userPattern = RegExp(r'Username[:\s]+([a-zA-Z0-9_-]+)');
+    RegExp passPattern = RegExp(r'Password[:\s]+([a-zA-Z0-9_-]+)');
+    RegExp portPattern = RegExp(r'Port[:\s]+(\d+)');
+
+    var hostMatches = hostPattern.allMatches(html);
+    var userMatches = userPattern.allMatches(html);
+    var passMatches = passPattern.allMatches(html);
+    var portMatches = portPattern.allMatches(html);
+
+    if (hostMatches.isNotEmpty && userMatches.isNotEmpty && passMatches.isNotEmpty) {
+      for (int i = 0; i < hostMatches.length && i < userMatches.length && i < passMatches.length; i++) {
+        String host = hostMatches.elementAt(i).group(1) ?? '';
+        String username = userMatches.elementAt(i).group(1) ?? '';
+        String password = passMatches.elementAt(i).group(1) ?? '';
+        int port = 22;
+
+        if (i < portMatches.length) {
+          port = int.tryParse(portMatches.elementAt(i).group(1) ?? '22') ?? 22;
+        }
+
+        if (host.isNotEmpty && username.isNotEmpty && password.isNotEmpty) {
+          accounts.add(SSHAccount(
+            username: username,
+            host: host,
+            port: port,
+            password: password,
+            expiredDate: DateTime.now().add(const Duration(days: 7)),
+            source: source,
+          ));
+        }
+      }
+    }
+
+    return accounts;
   }
 
   static List<SSHAccount> _parseSSHOcean(String html, String source) {
-    // Similar parsing logic for SSHOcean
-    return _generateDemoAccounts(source, 'sshocean.com');
-  }
-
-  // Generate demo accounts for testing
-  static List<SSHAccount> _generateDemoAccounts(String source, String hostSuffix) {
     List<SSHAccount> accounts = [];
-    
-    List<String> countries = ['sg', 'us', 'uk', 'jp', 'de'];
-    
-    for (int i = 0; i < 3; i++) {
-      String country = countries[i % countries.length];
-      accounts.add(SSHAccount(
-        username: 'demo${DateTime.now().millisecondsSinceEpoch % 10000}',
-        host: '$country.$hostSuffix',
-        port: [22, 443, 80, 8080][i % 4],
-        password: 'demo${DateTime.now().millisecondsSinceEpoch % 1000}',
-        expiredDate: DateTime.now().add(Duration(days: 7 + i)),
-        source: source,
-      ));
+
+    RegExp hostPattern = RegExp(r'Host[:\s]+([a-zA-Z0-9.-]+)');
+    RegExp userPattern = RegExp(r'Username[:\s]+([a-zA-Z0-9_-]+)');
+    RegExp passPattern = RegExp(r'Password[:\s]+([a-zA-Z0-9_-]+)');
+    RegExp portPattern = RegExp(r'Port[:\s]+(\d+)');
+
+    var hostMatches = hostPattern.allMatches(html);
+    var userMatches = userPattern.allMatches(html);
+    var passMatches = passPattern.allMatches(html);
+    var portMatches = portPattern.allMatches(html);
+
+    if (hostMatches.isNotEmpty && userMatches.isNotEmpty && passMatches.isNotEmpty) {
+      for (int i = 0; i < hostMatches.length && i < userMatches.length && i < passMatches.length; i++) {
+        String host = hostMatches.elementAt(i).group(1) ?? '';
+        String username = userMatches.elementAt(i).group(1) ?? '';
+        String password = passMatches.elementAt(i).group(1) ?? '';
+        int port = 22;
+
+        if (i < portMatches.length) {
+          port = int.tryParse(portMatches.elementAt(i).group(1) ?? '22') ?? 22;
+        }
+
+        if (host.isNotEmpty && username.isNotEmpty && password.isNotEmpty) {
+          accounts.add(SSHAccount(
+            username: username,
+            host: host,
+            port: port,
+            password: password,
+            expiredDate: DateTime.now().add(const Duration(days: 7)),
+            source: source,
+          ));
+        }
+      }
     }
-    
+
     return accounts;
   }
 
